@@ -1,0 +1,11 @@
+C:\Users\Gateway\RedoCSharp\CollectionsPractice\CollectionsPractice\bin\Debug\netcoreapp2.0\CollectionsPractice.deps.json
+C:\Users\Gateway\RedoCSharp\CollectionsPractice\CollectionsPractice\bin\Debug\netcoreapp2.0\CollectionsPractice.runtimeconfig.json
+C:\Users\Gateway\RedoCSharp\CollectionsPractice\CollectionsPractice\bin\Debug\netcoreapp2.0\CollectionsPractice.runtimeconfig.dev.json
+C:\Users\Gateway\RedoCSharp\CollectionsPractice\CollectionsPractice\bin\Debug\netcoreapp2.0\CollectionsPractice.dll
+C:\Users\Gateway\RedoCSharp\CollectionsPractice\CollectionsPractice\bin\Debug\netcoreapp2.0\CollectionsPractice.pdb
+C:\Users\Gateway\RedoCSharp\CollectionsPractice\CollectionsPractice\obj\Debug\netcoreapp2.0\CollectionsPractice.csprojResolveAssemblyReference.cache
+C:\Users\Gateway\RedoCSharp\CollectionsPractice\CollectionsPractice\obj\Debug\netcoreapp2.0\CollectionsPractice.csproj.CoreCompileInputs.cache
+C:\Users\Gateway\RedoCSharp\CollectionsPractice\CollectionsPractice\obj\Debug\netcoreapp2.0\CollectionsPractice.AssemblyInfoInputs.cache
+C:\Users\Gateway\RedoCSharp\CollectionsPractice\CollectionsPractice\obj\Debug\netcoreapp2.0\CollectionsPractice.AssemblyInfo.cs
+C:\Users\Gateway\RedoCSharp\CollectionsPractice\CollectionsPractice\obj\Debug\netcoreapp2.0\CollectionsPractice.dll
+C:\Users\Gateway\RedoCSharp\CollectionsPractice\CollectionsPractice\obj\Debug\netcoreapp2.0\CollectionsPractice.pdb

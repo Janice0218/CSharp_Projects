@@ -8,17 +8,18 @@ namespace DeckOfCards
   
         static void Main(string[] args)
         {
-            var myDeck = new DeckOfCards();
-            Console.WriteLine(myDeck.Cards.Count);
- 
-
+            var myDeck = new Deck();
+            myDeck.Deal();
+            myDeck.Deal();
             myDeck.Shuffle();
             myDeck.PrintShoe();
-            myDeck.Deal();
-            myDeck.Deal();
-            myDeck.Reset();
+            var player1=new Player("Beth");
+            player1.Draw(myDeck);
+            player1.Draw(myDeck);
+            player1.SeeHand();
             myDeck.PrintShoe();
             
+
 
         }
     }

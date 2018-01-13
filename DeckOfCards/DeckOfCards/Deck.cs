@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace DeckOfCards
 {
-    class DeckOfCards
+    class Deck
     {
         
         private readonly string[]_faceTypes = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
         private readonly string[] _suitTypes = {"Clubs", "Hearts", "Diamonds", "Spades"};
         public List<Card> Cards { get; set; }
 
-        public DeckOfCards()
+        public Deck(bool jokers=false)
         {
             Cards = new List<Card>();
-            Reset();
+            Reset(jokers);
 
         }
 
@@ -26,7 +26,7 @@ namespace DeckOfCards
             return deal;
         }
 
-        public void Reset()
+        public void Reset(bool jokers=false)
         {
             Cards.Clear();
             foreach (var suitType in _suitTypes)
@@ -35,6 +35,12 @@ namespace DeckOfCards
                 {
                     Cards.Add(new Card(faceType, suitType));
                 }
+
+            }
+            if (jokers == true)
+            {
+                Cards.Add(new Card("Joker", "Joker"));
+                Cards.Add(new Card("Joker", "Joker"));
             }
         }
 

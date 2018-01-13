@@ -14,6 +14,10 @@
 
         public override string ToString()
         {
+            if (Face == "Joker")
+            {
+                return "JOKER";
+            }
             return Face + " of a " + Suit;
         }
     }

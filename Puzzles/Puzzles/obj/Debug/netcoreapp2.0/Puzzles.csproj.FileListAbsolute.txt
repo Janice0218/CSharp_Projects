@@ -1,0 +1,11 @@
+C:\Users\Gateway\RedoCSharp\Puzzles\Puzzles\obj\Debug\netcoreapp2.0\Puzzles.csprojResolveAssemblyReference.cache
+C:\Users\Gateway\RedoCSharp\Puzzles\Puzzles\obj\Debug\netcoreapp2.0\Puzzles.csproj.CoreCompileInputs.cache
+C:\Users\Gateway\RedoCSharp\Puzzles\Puzzles\obj\Debug\netcoreapp2.0\Puzzles.AssemblyInfoInputs.cache
+C:\Users\Gateway\RedoCSharp\Puzzles\Puzzles\obj\Debug\netcoreapp2.0\Puzzles.AssemblyInfo.cs
+C:\Users\Gateway\RedoCSharp\Puzzles\Puzzles\bin\Debug\netcoreapp2.0\Puzzles.deps.json
+C:\Users\Gateway\RedoCSharp\Puzzles\Puzzles\bin\Debug\netcoreapp2.0\Puzzles.runtimeconfig.json
+C:\Users\Gateway\RedoCSharp\Puzzles\Puzzles\bin\Debug\netcoreapp2.0\Puzzles.runtimeconfig.dev.json
+C:\Users\Gateway\RedoCSharp\Puzzles\Puzzles\bin\Debug\netcoreapp2.0\Puzzles.dll
+C:\Users\Gateway\RedoCSharp\Puzzles\Puzzles\bin\Debug\netcoreapp2.0\Puzzles.pdb
+C:\Users\Gateway\RedoCSharp\Puzzles\Puzzles\obj\Debug\netcoreapp2.0\Puzzles.dll
+C:\Users\Gateway\RedoCSharp\Puzzles\Puzzles\obj\Debug\netcoreapp2.0\Puzzles.pdb

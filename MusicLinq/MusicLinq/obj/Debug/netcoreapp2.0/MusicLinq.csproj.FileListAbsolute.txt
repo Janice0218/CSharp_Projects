@@ -1,0 +1,11 @@
+C:\Users\Gateway\RedoCSharp\MusicLinq\MusicLinq\bin\Debug\netcoreapp2.0\MusicLinq.deps.json
+C:\Users\Gateway\RedoCSharp\MusicLinq\MusicLinq\bin\Debug\netcoreapp2.0\MusicLinq.runtimeconfig.json
+C:\Users\Gateway\RedoCSharp\MusicLinq\MusicLinq\bin\Debug\netcoreapp2.0\MusicLinq.runtimeconfig.dev.json
+C:\Users\Gateway\RedoCSharp\MusicLinq\MusicLinq\bin\Debug\netcoreapp2.0\MusicLinq.dll
+C:\Users\Gateway\RedoCSharp\MusicLinq\MusicLinq\bin\Debug\netcoreapp2.0\MusicLinq.pdb
+C:\Users\Gateway\RedoCSharp\MusicLinq\MusicLinq\obj\Debug\netcoreapp2.0\MusicLinq.csprojResolveAssemblyReference.cache
+C:\Users\Gateway\RedoCSharp\MusicLinq\MusicLinq\obj\Debug\netcoreapp2.0\MusicLinq.csproj.CoreCompileInputs.cache
+C:\Users\Gateway\RedoCSharp\MusicLinq\MusicLinq\obj\Debug\netcoreapp2.0\MusicLinq.AssemblyInfoInputs.cache
+C:\Users\Gateway\RedoCSharp\MusicLinq\MusicLinq\obj\Debug\netcoreapp2.0\MusicLinq.AssemblyInfo.cs
+C:\Users\Gateway\RedoCSharp\MusicLinq\MusicLinq\obj\Debug\netcoreapp2.0\MusicLinq.dll
+C:\Users\Gateway\RedoCSharp\MusicLinq\MusicLinq\obj\Debug\netcoreapp2.0\MusicLinq.pdb

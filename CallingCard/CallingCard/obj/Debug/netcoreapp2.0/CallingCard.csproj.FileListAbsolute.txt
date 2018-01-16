@@ -1,0 +1,11 @@
+C:\Users\Gateway\RedoCSharp\CallingCard\CallingCard\obj\Debug\netcoreapp2.0\CallingCard.csprojResolveAssemblyReference.cache
+C:\Users\Gateway\RedoCSharp\CallingCard\CallingCard\obj\Debug\netcoreapp2.0\CallingCard.csproj.CoreCompileInputs.cache
+C:\Users\Gateway\RedoCSharp\CallingCard\CallingCard\obj\Debug\netcoreapp2.0\CallingCard.AssemblyInfoInputs.cache
+C:\Users\Gateway\RedoCSharp\CallingCard\CallingCard\obj\Debug\netcoreapp2.0\CallingCard.AssemblyInfo.cs
+C:\Users\Gateway\RedoCSharp\CallingCard\CallingCard\bin\Debug\netcoreapp2.0\CallingCard.deps.json
+C:\Users\Gateway\RedoCSharp\CallingCard\CallingCard\bin\Debug\netcoreapp2.0\CallingCard.runtimeconfig.json
+C:\Users\Gateway\RedoCSharp\CallingCard\CallingCard\bin\Debug\netcoreapp2.0\CallingCard.runtimeconfig.dev.json
+C:\Users\Gateway\RedoCSharp\CallingCard\CallingCard\bin\Debug\netcoreapp2.0\CallingCard.dll
+C:\Users\Gateway\RedoCSharp\CallingCard\CallingCard\bin\Debug\netcoreapp2.0\CallingCard.pdb
+C:\Users\Gateway\RedoCSharp\CallingCard\CallingCard\obj\Debug\netcoreapp2.0\CallingCard.dll
+C:\Users\Gateway\RedoCSharp\CallingCard\CallingCard\obj\Debug\netcoreapp2.0\CallingCard.pdb

@@ -1,0 +1,23 @@
+﻿@model System.DateTime
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        .time{text-align: center; border: 2px black solid; width: 200px; height: 100px; margin: 50px auto; padding: auto;}
+        h2{ text-align: center; margin-top: 150px}
+        
+
+    </style>
+</head>
+<body>
+<h2>The current time and date:</h2>
+
+<div class="time">
+    <h4>@Model.ToLongDateString()</h4>
+    <h4>@Model.ToShortTimeString()</h4>
+</div>
+</body>
+</html>
+

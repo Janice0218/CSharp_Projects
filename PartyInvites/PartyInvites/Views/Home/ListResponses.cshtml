@@ -1,0 +1,28 @@
+﻿@model IEnumerable<PartyInvites.Models.GuestResponse>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<body>
+    <h2>Attend so far...</h2>
+    <ul>
+
+        @{
+            foreach (var response in Model)
+            {
+                <li>@response.Name</li>
+            }
+        }
+    </ul>
+
+
+
+</body>
+</html>

@@ -7,25 +7,46 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>RsvpForm</title>
+    <link href="/css/StyleSheet.css" rel="stylesheet" />
+    <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-<form action="RsvpForm" method="post">
-    <label asp-for="Name">Name: </label>
-    <input asp-for="Name">  
+<div class="panel panel-success">
+    <div class="panel-heading"><h2 class="text-center">RSVP</h2>
+        </div>
+    <div class="panel-body">
+        <form class="p-a-1" action="RsvpForm" method="post">
+            <div asp-validation-summary="All"></div>
+            
+            <div class="form-group" > <p><label asp-for="Name">Name: </label>
+                <input class="form-control" asp-for="Name"></p></div>
+            
 
-    <label asp-for="Phone">Phone: </label>
-    <input asp-for="Phone">  
+            <div class="form-group">
+                <p>
+                    <label asp-for="Phone">Phone: </label>
+                    <input class="form-control" asp-for="Phone">
+                </p></div>
 
-    <label asp-for="Email">Email: </label>
-    <input asp-for="Email"> 
+            <div class="form-group">
+                <p>
+                    <label asp-for="Email">Email: </label>
+                    <input class="form-control" asp-for="Email">
+                </p></div>
 
-    <label asp-for="WillAttend">Will you attend? </label>
-    <select asp-for="WillAttend">
-        <option value="">Choose an Option</option>
-        <option value="true">Yes, I will attend</option>
-        <option value="false">No, I cannot come</option>
-    </select>
-    <button type="submit">Submit RSVP</button>
-</form>
+            <div class="form-group">
+                <p>
+                    <label asp-for="WillAttend">Will you attend? </label>
+                    <select class="form-control" asp-for="WillAttend">
+                        <option value="">Choose an Option</option>
+                        <option value="true">Yes, I will attend</option>
+                        <option value="false">No, I cannot come</option>
+                    </select>
+                </p>
+            </div>
+            <div class="text-center"><button class="btn btn-primary" type="submit">Submit RSVP</button></div>
+        </form>
+    </div>
+</div>
 </body>
 </html>

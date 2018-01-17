@@ -9,18 +9,38 @@
 
 <head>
     <title></title>
+    <link href="/css/StyleSheet.css" rel="stylesheet" />
+    <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <h2>Attend so far...</h2>
-    <ul>
+    <div class="panel-body">
+        <h2>Here are the party people that can make it...</h2>
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Name:</td>
+                    <td>Phone:</td>
+                    <td>Email:</td>
 
-        @{
-            foreach (var response in Model)
-            {
-                <li>@response.Name</li>
-            }
-        }
-    </ul>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                foreach (var response in Model)
+                {
+                    <tr>
+                        <td>@response.Name</td>
+                        <td>@response.Phone</td>
+                    <td>@response.Email</td>
+            </tr>
+
+    }
+                }
+
+        </table>
+    </div>
+
+
 
 
 

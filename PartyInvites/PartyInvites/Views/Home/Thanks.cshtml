@@ -8,13 +8,15 @@
 <html>
 <head>
     <title>Thanks</title>
+    <link href="/css/StyleSheet.css" rel="stylesheet" />
+    <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
-<body>
+<body class="text-center">
     <h2>Thank you, @Model.Name!</h2>
 @if (Model.WillAttend == true)
 {
     <p>We are looking forward to seeing you there!</p>
-    <p>Click <a asp-action="ListResponses">here</a> To see who is coming.</p>
+    <p>Click <a class="nav-link"asp-action="ListResponses">here</a> To see who is coming.</p>
 }
 </body>
 </html>

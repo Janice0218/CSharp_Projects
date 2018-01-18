@@ -1,0 +1,11 @@
+C:\Users\Gateway\RedoCSharp\RandomPasscode\RandomPasscode\bin\Debug\netcoreapp2.0\RandomPasscode.deps.json
+C:\Users\Gateway\RedoCSharp\RandomPasscode\RandomPasscode\bin\Debug\netcoreapp2.0\RandomPasscode.runtimeconfig.json
+C:\Users\Gateway\RedoCSharp\RandomPasscode\RandomPasscode\bin\Debug\netcoreapp2.0\RandomPasscode.runtimeconfig.dev.json
+C:\Users\Gateway\RedoCSharp\RandomPasscode\RandomPasscode\bin\Debug\netcoreapp2.0\RandomPasscode.dll
+C:\Users\Gateway\RedoCSharp\RandomPasscode\RandomPasscode\obj\Debug\netcoreapp2.0\RandomPasscode.csprojResolveAssemblyReference.cache
+C:\Users\Gateway\RedoCSharp\RandomPasscode\RandomPasscode\obj\Debug\netcoreapp2.0\RandomPasscode.csproj.CoreCompileInputs.cache
+C:\Users\Gateway\RedoCSharp\RandomPasscode\RandomPasscode\obj\Debug\netcoreapp2.0\RandomPasscode.AssemblyInfoInputs.cache
+C:\Users\Gateway\RedoCSharp\RandomPasscode\RandomPasscode\obj\Debug\netcoreapp2.0\RandomPasscode.AssemblyInfo.cs
+C:\Users\Gateway\RedoCSharp\RandomPasscode\RandomPasscode\bin\Debug\netcoreapp2.0\RandomPasscode.pdb
+C:\Users\Gateway\RedoCSharp\RandomPasscode\RandomPasscode\obj\Debug\netcoreapp2.0\RandomPasscode.dll
+C:\Users\Gateway\RedoCSharp\RandomPasscode\RandomPasscode\obj\Debug\netcoreapp2.0\RandomPasscode.pdb

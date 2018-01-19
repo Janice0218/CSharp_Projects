@@ -1,0 +1,11 @@
+C:\Users\Gateway\RedoCSharp\WhichMethod\WhichMethod\bin\Debug\netcoreapp2.0\WhichMethod.deps.json
+C:\Users\Gateway\RedoCSharp\WhichMethod\WhichMethod\bin\Debug\netcoreapp2.0\WhichMethod.runtimeconfig.json
+C:\Users\Gateway\RedoCSharp\WhichMethod\WhichMethod\bin\Debug\netcoreapp2.0\WhichMethod.runtimeconfig.dev.json
+C:\Users\Gateway\RedoCSharp\WhichMethod\WhichMethod\bin\Debug\netcoreapp2.0\WhichMethod.dll
+C:\Users\Gateway\RedoCSharp\WhichMethod\WhichMethod\bin\Debug\netcoreapp2.0\WhichMethod.pdb
+C:\Users\Gateway\RedoCSharp\WhichMethod\WhichMethod\obj\Debug\netcoreapp2.0\WhichMethod.csprojResolveAssemblyReference.cache
+C:\Users\Gateway\RedoCSharp\WhichMethod\WhichMethod\obj\Debug\netcoreapp2.0\WhichMethod.csproj.CoreCompileInputs.cache
+C:\Users\Gateway\RedoCSharp\WhichMethod\WhichMethod\obj\Debug\netcoreapp2.0\WhichMethod.AssemblyInfoInputs.cache
+C:\Users\Gateway\RedoCSharp\WhichMethod\WhichMethod\obj\Debug\netcoreapp2.0\WhichMethod.AssemblyInfo.cs
+C:\Users\Gateway\RedoCSharp\WhichMethod\WhichMethod\obj\Debug\netcoreapp2.0\WhichMethod.dll
+C:\Users\Gateway\RedoCSharp\WhichMethod\WhichMethod\obj\Debug\netcoreapp2.0\WhichMethod.pdb

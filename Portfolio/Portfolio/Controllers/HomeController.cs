@@ -8,8 +8,8 @@ namespace Portfolio.Controllers
 {
     public class HomeController : Controller
     {
-        [HttpGet("home")]
-        public IActionResult Home()
+        
+        public IActionResult Index()
         {
             return View();
         }

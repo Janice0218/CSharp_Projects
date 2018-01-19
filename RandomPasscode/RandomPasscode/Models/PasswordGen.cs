@@ -9,8 +9,14 @@ namespace RandomPasscode.Models
     {
         private const string _chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private Random rand = new Random();
+        private static int _count = 0;
 
-        public  string GetPassword(int length)
+        public PasswordGen()
+        {
+            _count += 1;
+        }
+
+        public string GetPassword(int length)
         {
             var charArray = new char[length];
             for (int i = 0; i < length; i++)
@@ -20,6 +26,11 @@ namespace RandomPasscode.Models
 
             return string.Join("", charArray);
             
+        }
+
+        public static int GetCount()
+        {
+            return _count;
         }
     }
 }

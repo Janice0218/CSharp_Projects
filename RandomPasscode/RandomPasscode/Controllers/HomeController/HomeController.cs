@@ -12,10 +12,11 @@ namespace RandomPasscode.Controllers.HomeController
     public class HomeController : Controller
     {
         // GET: /<controller>/
-        public string Index()
+        public IActionResult Index()
         {
-            var password = new PasswordGen().GetPassword(14);
-            return password;
+            ViewBag.Password = new PasswordGen().GetPassword(14);
+            ViewBag.Count = PasswordGen.GetCount();
+            return View();
         }
     }
 }

@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="/css/Styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="panel">
+        <p><span>Fullness: @ViewBag.Fullness</span><span>Happiness: @ViewBag.Happiness</span><span>Energy: @ViewBag.Energy</span><span>Meals: @ViewBag.Meals</span></p>
+
+        <div class="photo">
+            <img src="@ViewBag.Photo" />
+            <p>@ViewBag.Message</p>
+        </div>
+        <form action="/GoAchi" method="post">
+            <input type="submit" name="activity" value="feed">
+        </form><form action="/GoAchi" method="post">
+            <input type="submit" name="activity" value="play">
+        </form><form action="/GoAchi" method="post">
+            <input type="submit" name="activity" value="work">
+        </form><form action="/GoAchi" method="post">
+            <input type="hidden" name="activity" value="sleep" />
+            <button type="submit">Sleep</button>
+        </form>
+    </div>
+</body>
+</html>

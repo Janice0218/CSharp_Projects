@@ -18,5 +18,10 @@ namespace RandomPasscode.Controllers.HomeController
             ViewBag.Count = PasswordGen.GetCount();
             return View();
         }
+        [HttpGet("/password")]
+        public JsonResult Password()
+        {
+            return Json(new PasswordGen().GetPassword(14));
+        }
     }
 }

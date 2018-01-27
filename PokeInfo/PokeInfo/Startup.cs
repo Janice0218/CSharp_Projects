@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace RandomPasscode
+namespace PokeInfo
 {
     public class Startup
     {
@@ -26,7 +26,6 @@ namespace RandomPasscode
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
     }

@@ -1,0 +1,32 @@
+﻿@model List<Dictionary<string,object>>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+
+<div>
+    <h2>Nearly Famous Quotes</h2>
+    <hr />
+@foreach (var user in Model)
+{   
+    
+    <p>"@user["quote"]"</p>
+    <p>@user["name"] at @Convert.ToDateTime(user["created_at"]).ToString("f")</p>
+    <hr/>
+}
+</div>
+<div>
+  
+    
+</div>
+</body>
+</html>

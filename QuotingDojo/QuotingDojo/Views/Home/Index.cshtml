@@ -1,0 +1,28 @@
+﻿@using QuotingDojo.Models
+@model QuotingDojo.Models.User
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+    <div>
+        <h2>Welcome to Quoting Dojo</h2>
+        <form action="/quotes" method="post">
+            <label asp-for="name">Your Name: </label>
+            <input type="text" name="name" />
+            <p>
+                <label style="vertical-align: top" asp-for="quote">Your Quote: </label>
+                <textarea  cols="22" rows="5" type="text" name="quote" ></textarea>
+            </p>
+            <input type="submit" value=" Add my quote" />
+        </form>
+        <p><form action="/quotes" method="get">
+            <input type="submit" value="Skip to quotes!" />
+        </form></p>
+
+    </div>
+</body>
+</html>

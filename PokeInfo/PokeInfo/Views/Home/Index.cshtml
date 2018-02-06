@@ -1,10 +1,21 @@
-﻿@model PokeInfo.Models.PokeDetails
-    
-    
-<h4>Name: @Model.Name</h4>
-<h5>Type: @Model.Type</h5>
-<h5>Height: @Model.Height</h5>
-<h5>Weight: @Model.Weight</h5>
+﻿@using Newtonsoft.Json.Linq
+@using PokeInfo.Models
+@model PokeInfo.Models.PokeDetails
+
+<div style="margin: 200px auto; border: 2px solid black; width: 400px; padding: 50px; text-align:center">
+    <h2>Name: @Model.Name</h2>
+    <h4>Height: @Model.Height inches</h4>
+    <h4>Weight: @Model.Weight oz</h4>
+
+    <h4>Types:</h4>
+    @foreach (var item in Model.Types)
+    {
+        <h5 style="margin-left:20px">@item["type"]["name"]</h5>
+
+    }
 
 
-<img src="@ViewBag.Image" alt="Alternate Text" />
+
+
+    <img src="@ViewBag.Image" alt="Alternate Text" />
+</div>

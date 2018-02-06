@@ -14,10 +14,9 @@ namespace PokeInfo.Controllers
 {   
     public class HomeController : Controller
     {
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Index(int id =1)
+        
+        public async Task<IActionResult> Index(int id = 1)
         {
-            
             var pokeInfo = await PokemonApiReq.GetPokeInfo(id);
             ViewBag.Image = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png";
             return View(pokeInfo);

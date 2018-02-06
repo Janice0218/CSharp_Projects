@@ -9,18 +9,13 @@ namespace PokeInfo.Models
 {
     public class PokeDetails
     {
-       
+
         public string Name;
         public IEnumerable<JObject> Types;
         public string Height;
         public string Weight;
         public string Id;
-
-//        public PokeDetails(JObject data)
-//        {
-//            Name = (string)data["name"];
-//        }
     }
 
- 
+
 }

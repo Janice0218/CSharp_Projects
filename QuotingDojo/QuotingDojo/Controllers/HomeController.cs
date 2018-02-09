@@ -12,7 +12,15 @@ namespace QuotingDojo.Controllers
 {
     public class HomeController : Controller
     {
-       [HttpGet("")]
+
+        private DbConnector _dbConnector;
+
+        public HomeController(DbConnector dbConnector)
+        {
+            _dbConnector = dbConnector;
+        }
+
+        [HttpGet("")]
         public IActionResult Index()
         {
             return View();
@@ -21,7 +29,7 @@ namespace QuotingDojo.Controllers
         [HttpGet("/quotes")]
         public IActionResult Show()
         {
-            var query = DbConnector.Query(@"Select * from users");
+            var query = _dbConnector.Query(@"Select * from users");
             return View(query);
         }
 
@@ -30,7 +38,7 @@ namespace QuotingDojo.Controllers
         {
             var query =
                 $@"insert into users(name,quote,created_at, updated_at)values('{user.name}', '{user.quote}', NOW(), NOW())";
-            DbConnector.Execute(query);
+            _dbConnector.Execute(query);
             return RedirectToAction("Show");
         }
     }

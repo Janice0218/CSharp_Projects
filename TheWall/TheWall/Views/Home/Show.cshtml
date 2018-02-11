@@ -1,0 +1,35 @@
+﻿@model List<Dictionary<string,object>>
+
+
+
+<div style="margin:20px">
+    <h2>Welcome, @ViewBag.name!</h2>
+
+    @foreach (var message in Model)
+    {
+        <div class="card w-25 p-2" style="width: 18rem">
+
+            <p class="card-body">@message["message"] </p>
+            <p class="blockquote-footer"><i><small><b>@message["first_name"] @message["last_name"] @Convert.ToDateTime(message["created_at"]).ToString("f")</b></small></i></p>
+            <div style="display: inline-block;">
+                <a asp-action="Comment" class="btn btn-primary btn-sm col-md-2 tiny">Reply</a>
+
+                @if (ViewBag.id == Convert.ToInt32(message["user_id"]))
+    {
+            <a asp-action="Delete" class="btn btn-danger btn-sm col-md-2 float-right tiny">Delete</a>
+            <a asp-action="Edit" class="btn btn-warning btn-sm col-md-2 float-right tiny">Edit</a>
+}
+            </div>
+                </div>
+    }
+
+    <div style="margin-top: 100px">
+        <form asp-action="Create" method="post">
+            <p class="message">Add a new message to the wall:</p>
+            <textarea cols="50" rows="4" name="message"></textarea>
+            <button class="btn btn-sm btn-primary">Post</button>
+        </form>
+    </div>
+</div>
+
+

@@ -1,0 +1,41 @@
+﻿@model Users
+
+<div class="container">
+    <h1 >Welcome!</h1>
+    <div style="width: 350px" class="card p-2 m-2">
+        <form  asp-action="login" method="post">
+            <h4 class="card-header">Login</h4>
+            <div class="form-group row">
+
+
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="email">Email: </label>
+                <input class="form-control col-md-6" id="email" type="text" name="email" />
+                <span asp-validation-for="email"></span>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="password">Password: </label>
+                <input class="form-control col-md-6" id="password" type="text" name="password" />
+                <span asp-validation-for="password"></span>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label"></label>
+                <input class="form-control col-md-6 btn btn-primary" type="submit" value="Login" />
+            </div>
+        </form>
+    </div>
+    
+    <div style="width: 350px" class="card p-2 m-2">
+        <h4 class="card-header">Not Registered?</h4>
+        <div class="card-body">
+            <p>Registration is fast and easy.</p>
+            <p>Click below for free account now.</p>
+        </div>
+        <a asp-action="Register"class="form-control col-md-6 btn btn-primary"  value="Register">Register </a>
+    </div>
+
+</div>
+

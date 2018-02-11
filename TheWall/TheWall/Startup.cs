@@ -34,6 +34,7 @@ namespace TheWall
             services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
             services.AddScoped<DbConnector>();
             services.AddMvc();
+            services.AddSession();
         }
 
   
@@ -44,8 +45,10 @@ namespace TheWall
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSession();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
+            
         }
     }
 }

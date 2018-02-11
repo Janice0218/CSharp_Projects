@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DbConnection;
 using Microsoft.AspNetCore.Mvc;
 
+
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TheWall.Controllers
@@ -20,12 +21,18 @@ namespace TheWall.Controllers
 
         public IActionResult Index()
         {
-            View();
+            return View();
+        }
+
+        [HttpPost]
+        public RedirectToActionResult Login()
+        {
+            return RedirectToAction("Test");
         }
 
         public IActionResult Register()
         {
-            View();
+            return View();
         }
 
 

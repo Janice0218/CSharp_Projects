@@ -20,6 +20,17 @@ namespace TheWall.Controllers
 
         public IActionResult Index()
         {
+            View();
+        }
+
+        public IActionResult Register()
+        {
+            View();
+        }
+
+
+        public IActionResult Test()
+        {
             var result =_dbConnector.Query(@"select * from users");
             return View(result);
         }

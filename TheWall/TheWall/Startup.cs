@@ -31,7 +31,7 @@ namespace TheWall
         {
 
 
-            services.Configure<MySqlOptions>(Configuration.GetSection("ConnectionString"));
+            services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
             services.AddScoped<DbConnector>();
             services.AddMvc();
         }

@@ -34,6 +34,7 @@ namespace TheWall
             services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
             services.AddScoped<DbConnector>();
             services.AddMvc();
+//                .AddMvcOptions(options => options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(value => "This field is required."));
             services.AddSession();
         }
 
@@ -47,8 +48,8 @@ namespace TheWall
 
             app.UseSession();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-            
+            app.UseMvc(routes => routes.MapRoute("", "{controller=Home}/{action=login}"));
+
         }
     }
 }

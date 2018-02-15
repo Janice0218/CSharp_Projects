@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DbConnection;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TheWall.Models;
 
@@ -20,35 +21,67 @@ namespace TheWall.Controllers
         {
             _dbConnector = dbConnector;
         }
-
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public RedirectToActionResult Login()
+        public IActionResult Login(ReturningUser user)
         {
-            return RedirectToAction("Show");
+            if (ModelState.IsValid)
+            {
+                var emailQuery = $"Select * from users where email='{user.email}'";
+                var result = _dbConnector.Query(emailQuery).FirstOrDefault();
+                if (result == null)
+                {
+                    ModelState.AddModelError("email", "Invalid email/password");
+                } else
+                {
+                    var hasher = new PasswordHasher<ReturningUser>();
+                    var pw = result["password"].ToString();
+                    if (hasher.VerifyHashedPassword(user, pw, user.password) == PasswordVerificationResult.Failed)
+                    {
+                        ModelState.AddModelError("email", "Invalid email/password");
+                    }
+                    else if (ModelState.IsValid)
+                    {
+                        RedirectToAction("Show");
+                    }
+                }
+                if (ModelState.IsValid)
+                {
+                    return RedirectToAction("Show");
+                }
+            }
+            return View();
         }
-
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Register(Users info)
+        public IActionResult Register(User info)
         {
-            _dbConnector.Execute(
-                $"INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) values('{info.first_name}', '{info.last_name}','{info.email}', '{info.password}', now(),now())");
-            var addedUser = _dbConnector.Query(@"Select*from users where id=LAST_INSERT_ID()");
-            int userID = Convert.ToInt32(addedUser[0]["id"]);
-            string name = addedUser[0]["first_name"].ToString();
-            HttpContext.Session.SetInt32("id", userID );
-            HttpContext.Session.SetString("name", name);
-            TempData["id"] = userID;
-            return RedirectToAction("Show");
+            if (ModelState.IsValid)
+            {
+                var hasher = new PasswordHasher<User>();
+                var hashedPassword =  hasher.HashPassword(info, info.password);
+                _dbConnector.Execute(
+                    $"INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) values('{info.first_name}', '{info.last_name}','{info.email}', '{hashedPassword}', now(),now())");
+                var addedUser = _dbConnector.Query(@"Select*from users where id=LAST_INSERT_ID()");
+                int userID = Convert.ToInt32(addedUser[0]["id"]);
+                string name = addedUser[0]["first_name"].ToString();
+                HttpContext.Session.SetInt32("id", userID);
+                HttpContext.Session.SetString("name", name);
+                TempData["id"] = userID;
+                return RedirectToAction("Show");
+            }
+
+            return View();
         }
 
         public IActionResult Show()
@@ -60,6 +93,7 @@ namespace TheWall.Controllers
             return View(result);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();

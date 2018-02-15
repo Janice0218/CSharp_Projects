@@ -23,7 +23,9 @@ namespace LoginAndRegistration
         {
             services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
             services.AddScoped<DBConnector>();
+            
             services.AddMvc();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,7 +37,9 @@ namespace LoginAndRegistration
             }
 
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvcWithDefaultRoute();
+            
         }
     }
 }

@@ -10,12 +10,12 @@ namespace LoginAndRegistration.Models
     {
         [Required(ErrorMessage = "Enter your first name")]
         [MinLength(2, ErrorMessage = "First name must be at least 2 characters")]
-//        [RegularExpression(@"^[A-Z][a-z]$", ErrorMessage = "first name must be letters only")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "first name must be letters only")]
         public string first_name { get; set; }
 
         [Required(ErrorMessage = "Enter your last name")]
         [MinLength(2, ErrorMessage = "Last name must be at least 2 characters")]
-//        [RegularExpression(@"^[A-Z][a-z]$", ErrorMessage = "Last name must be letters only")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Last name must be letters only")]
         public string last_name { get; set; }
 
         [Required(ErrorMessage = "Enter your email")]
@@ -32,7 +32,11 @@ namespace LoginAndRegistration.Models
 
     public class Login
     {
+        [Required]
+        [EmailAddress(ErrorMessage = "Enter a valid email")]
         public string email { get; set; }
+
+        [Required]
         public string password { get; set; }
     }
 }

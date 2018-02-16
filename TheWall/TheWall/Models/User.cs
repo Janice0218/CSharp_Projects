@@ -24,6 +24,7 @@ namespace TheWall.Models
         public string email { get; set; }
 
         [Required]
+        [MinLength(8, ErrorMessage = "passwords should be a minimum of 8 characters")]
         [Display(Name = "password")]
         public string password { get; set; }
 

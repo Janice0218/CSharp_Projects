@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using TheWall.Models;
 
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TheWall.Controllers
 {
@@ -37,7 +36,8 @@ namespace TheWall.Controllers
                 if (result == null)
                 {
                     ModelState.AddModelError("email", "Invalid email/password");
-                } else
+                }
+                else
                 {
                     var hasher = new PasswordHasher<ReturningUser>();
                     var pw = result["password"].ToString();
@@ -45,13 +45,12 @@ namespace TheWall.Controllers
                     {
                         ModelState.AddModelError("email", "Invalid email/password");
                     }
-                    else if (ModelState.IsValid)
-                    {
-                        RedirectToAction("Show");
-                    }
                 }
+
                 if (ModelState.IsValid)
                 {
+                    HttpContext.Session.SetInt32("id", (int)result["id"]);
+                    RedirectToAction("Show");
                     return RedirectToAction("Show");
                 }
             }
@@ -86,11 +85,18 @@ namespace TheWall.Controllers
 
         public IActionResult Show()
         {
-            ViewBag.name =HttpContext.Session.GetString("name");
-            ViewBag.id =HttpContext.Session.GetInt32("id");
-            var result =_dbConnector.Query(
-                $"select messages.*, users.first_name, users.last_name from messages join users as users on messages.user_id = users.id");
-            return View(result);
+            if (HttpContext.Session.Get("id") == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ViewBag.name = HttpContext.Session.GetString("name");
+                ViewBag.id = HttpContext.Session.GetInt32("id");
+                var result = _dbConnector.Query(
+                    $"select messages.*, users.first_name, users.last_name from messages join users as users on messages.user_id = users.id");
+                return View(result);
+            }
         }
 
         [HttpGet]
@@ -107,6 +113,29 @@ namespace TheWall.Controllers
                 $"INSERT INTO messages(message, user_id, created_at, updated_at) VALUES ('{msg.message}', {userId}, now(),now())";
             _dbConnector.Execute(query);
             return RedirectToAction("Show");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var msgQuery = $"SELECT * FROM  MESSAGES WHERE id='{id}'";
+            var result = _dbConnector.Query(msgQuery).FirstOrDefault();
+
+            return View(new Message {message = result["message"].ToString(), id = (int)result["id"]});
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Message msg)
+        {
+            var updQuery = $"UPDATE messages SET message='{msg.message}' WHERE id='{msg.id}'";
+            _dbConnector.Execute(updQuery);
+            return RedirectToAction("Show");
+        }
+
+        [HttpGet]
+        public IActionResult Reply()
+        {
+            return View();
         }
     }
 }

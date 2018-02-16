@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace LoginAndRegistration.Controllers
 {
@@ -34,7 +33,8 @@ namespace LoginAndRegistration.Controllers
             if (ModelState.IsValid)
             {
                 string emailQuery = $"select id from users where email='{user.email}'";
-                if (_dbConnector.Query(emailQuery).Count > 0)
+                var result = _dbConnector.Query(emailQuery);
+                if (result.Count > 0)
                 {
                     ModelState.AddModelError("email", "email is already in use");
                 }
@@ -56,7 +56,7 @@ namespace LoginAndRegistration.Controllers
 
             } 
 
-            return View();
+            return View("Index" , user);
         }
 
         public IActionResult Success() => View();
@@ -65,11 +65,11 @@ namespace LoginAndRegistration.Controllers
         public IActionResult Login() => View();
 
         [HttpPost]
-        public IActionResult LogIn(Login user)
+        public IActionResult LogIn(LoginUser user)
         {
             if (ModelState.IsValid)
             {
-                var query = $"Select * from users where email = '{user.email}'";
+                var query = $"Select * from users where email='{user.email}'";
                 var result = _dbConnector.Query(query).FirstOrDefault();
                 
                 if (result == null)
@@ -79,21 +79,23 @@ namespace LoginAndRegistration.Controllers
                 else
                 {
                     string pw = result["password"].ToString();
-                    var hasher = new PasswordHasher<Login>();
+                    var hasher = new PasswordHasher<LoginUser>();
                     if(hasher.VerifyHashedPassword(user, pw, user.password) == PasswordVerificationResult.Failed)
                     {
                         ModelState.AddModelError("email", "Invalid email/password");
                     }
-                    else if (ModelState.IsValid)
-                    {
-                        HttpContext.Session.SetInt32("id", (int)result["id"]);
-                        TempData["user"] = result["first_name"];
-                        return RedirectToAction("Success");
-                    }
+
+                    
+                }
+                if (ModelState.IsValid)
+                {
+                    HttpContext.Session.SetInt32("id", (int)result["id"]);
+                    TempData["user"] = result["first_name"];
+                    return RedirectToAction("Success");
                 }
 
-                return View();
             }
+
             return View();
         }
     }

@@ -29,14 +29,4 @@ namespace LoginAndRegistration.Models
         [Compare("password", ErrorMessage = "Passwords do not match")]
         public string password2 { get; set; }
     }
-
-    public class Login
-    {
-        [Required]
-        [EmailAddress(ErrorMessage = "Enter a valid email")]
-        public string email { get; set; }
-
-        [Required]
-        public string password { get; set; }
-    }
 }

@@ -85,18 +85,13 @@ namespace TheWall.Controllers
 
         public IActionResult Show()
         {
-            if (HttpContext.Session.Get("id") == null)
-            {
-                return RedirectToAction("Login");
-            }
-            else
-            {
-                ViewBag.name = HttpContext.Session.GetString("name");
-                ViewBag.id = HttpContext.Session.GetInt32("id");
-                var result = _dbConnector.Query(
-                    $"select messages.*, users.first_name, users.last_name, comments.comment from messages join comments as comments on messages.id=comments.message_id join users as users on messages.user_id=users.id Group_by message");
-                return View(result);
-            }
+            var messages = _dbConnector.Query(
+                $"select messages.*, users.first_name, users.last_name from messages join users as users on messages.user_id=users.id");
+            var comments =  _dbConnector.Query(
+                $"select comments.*, users.first_name, users.last_name from comments join users as users on comments.user_id=users.id");
+
+            return View(new WallViewModel {Comments = comments, Messages = messages});
+
         }
 
         [HttpGet]

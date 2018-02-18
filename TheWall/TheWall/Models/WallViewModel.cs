@@ -7,9 +7,8 @@ namespace TheWall.Models
 {
     public class WallViewModel
     {
-        public User user { get; set; }
-        public Message message { get; set; }
-        public Comment comment { get; set; }
+        public List<Dictionary<string,object>> Messages { get; set; }
+        public List<Dictionary<string,object>> Comments { get; set; }
 
     }
 }

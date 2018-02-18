@@ -80,7 +80,7 @@ namespace TheWall.Controllers
                 return RedirectToAction("Show");
             }
 
-            return View();
+            return View(info);
         }
 
         public IActionResult Show()
@@ -94,7 +94,7 @@ namespace TheWall.Controllers
                 ViewBag.name = HttpContext.Session.GetString("name");
                 ViewBag.id = HttpContext.Session.GetInt32("id");
                 var result = _dbConnector.Query(
-                    $"select messages.*, users.first_name, users.last_name from messages join users as users on messages.user_id = users.id");
+                    $"select messages.*, users.first_name, users.last_name, comments.comment from messages join comments as comments on messages.id=comments.message_id join users as users on messages.user_id=users.id Group_by message");
                 return View(result);
             }
         }
@@ -133,9 +133,19 @@ namespace TheWall.Controllers
         }
 
         [HttpGet]
-        public IActionResult Reply()
+        public IActionResult CreateComment(int id)
         {
-            return View();
+            return View(new Comment{ message_id = id});
+        }
+
+        [HttpPost]
+        public IActionResult CreateComment(string comment, int message_id)
+        {
+            var userId = HttpContext.Session.GetInt32("id");
+            string commentQuery =
+                $"INSERT INTO comments(comment, user_id, message_id, created_at, updated_at) VALUES ('{comment}', {userId}, {message_id}, now(), now())";
+            _dbConnector.Execute(commentQuery);
+            return RedirectToAction("Show");
         }
     }
 }

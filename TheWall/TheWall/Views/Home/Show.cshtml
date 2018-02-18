@@ -13,8 +13,9 @@
 
             <p class="card-body">@message["message"] </p>
             <p class="blockquote-footer"><i><small><b>@message["first_name"] @message["last_name"] @Convert.ToDateTime(message["created_at"]).ToString("f")</b></small></i></p>
+
             <div style="display: inline-block;">
-                <a asp-action="Comment" class="btn btn-primary btn-sm col-md-2 tiny">Reply</a>
+                <a asp-action="Comment" asp-route-id=@message["id"] class="btn btn-primary btn-sm col-md-2 tiny">Reply</a>
 
                 @if (ViewBag.id == Convert.ToInt32(message["user_id"]))
                 {
@@ -23,9 +24,12 @@
                     {
                         <a asp-action="Edit" asp-route-id=@message["id"] class="btn btn-warning btn-sm col-md-2 float-right tiny">Edit</a>
                     }
+
                 }
+
             </div>
         </div>
+        @message["comment"]
     }
     <div style="margin-top: 100px">
         <form asp-action="Create" method="post">

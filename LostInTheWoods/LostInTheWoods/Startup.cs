@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LostInTheWoods.Factories;
 using LostInTheWoods.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace LostInTheWoods
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MySqlOptions>(_config.GetSection("DbInfo"));
+            services.AddSingleton<TrailsFactory>();
             services.AddMvc();
         }
 
@@ -36,7 +38,8 @@ namespace LostInTheWoods
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseStaticFiles();
+            app.UseMvc(routes => routes.MapRoute("defailt", "{controller=Home}/{action=index}/{id?}"));
         }
     }
 }

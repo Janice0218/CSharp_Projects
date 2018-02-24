@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
-
+using Dapper;
+using TheWall.Models;
 using TheWall.Properties;
 
 namespace DbConnection
@@ -21,6 +23,15 @@ namespace DbConnection
             get
             {
                 return new MySqlConnection(MySqlConfig.Value.ConnectionString);
+            }
+        }
+
+        public List<User> GetAll()
+        {
+            using (IDbConnection db = Connection)
+            {
+                var result = db.Query<User>("Select * From Users").ToList();
+                return result;
             }
         }
 

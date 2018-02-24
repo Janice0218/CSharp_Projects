@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TheWall.Models;
+using Dapper;
 
 
 
@@ -46,16 +47,17 @@ namespace TheWall.Controllers
                         ModelState.AddModelError("email", "Invalid email/password");
                     }
                 }
-
                 if (ModelState.IsValid)
                 {
                     HttpContext.Session.SetInt32("id", (int)result["id"]);
-                    RedirectToAction("Show");
+
+
                     return RedirectToAction("Show");
                 }
             }
             return View();
         }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -67,17 +69,24 @@ namespace TheWall.Controllers
         {
             if (ModelState.IsValid)
             {
-                var hasher = new PasswordHasher<User>();
-                var hashedPassword =  hasher.HashPassword(info, info.password);
-                _dbConnector.Execute(
-                    $"INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) values('{info.first_name}', '{info.last_name}','{info.email}', '{hashedPassword}', now(),now())");
-                var addedUser = _dbConnector.Query(@"Select*from users where id=LAST_INSERT_ID()");
-                int userID = Convert.ToInt32(addedUser[0]["id"]);
-                string name = addedUser[0]["first_name"].ToString();
-                HttpContext.Session.SetInt32("id", userID);
-                HttpContext.Session.SetString("name", name);
-                TempData["id"] = userID;
-                return RedirectToAction("Show");
+                var emailCheck = $"select id from users where email='{info.email}' LIMIT 1";
+                if (_dbConnector.Query(emailCheck).Count > 0)
+                {
+                    ModelState.AddModelError("email", "Email is already in use.");
+                }
+                else
+                {
+                    var hasher = new PasswordHasher<User>();
+                    var hashedPassword = hasher.HashPassword(info, info.password);
+                    _dbConnector.Execute(
+                        $"INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) values('{info.first_name}', '{info.last_name}','{info.email}', '{hashedPassword}', now(),now())");
+                    var addedUser = _dbConnector.Query(@"Select*from users where id=LAST_INSERT_ID()");
+                    int userID = Convert.ToInt32(addedUser[0]["id"]);
+                    string name = addedUser[0]["first_name"].ToString();
+                    HttpContext.Session.SetInt32("id", userID);
+                    HttpContext.Session.SetString("name", name);
+                    return RedirectToAction("Show");
+                }
             }
 
             return View(info);
@@ -86,12 +95,13 @@ namespace TheWall.Controllers
         public IActionResult Show()
         {
             var messages = _dbConnector.Query(
-                $"select messages.*, users.first_name, users.last_name from messages join users as users on messages.user_id=users.id");
-            var comments =  _dbConnector.Query(
-                $"select comments.*, users.first_name, users.last_name from comments join users as users on comments.user_id=users.id");
+                $"select messages.*, users.first_name, users.last_name from messages join users as users on messages.user_id=users.id order by messages.updated_at");
+            var comments = _dbConnector.Query(
+                $"select comments.*, users.first_name, users.last_name from comments join users as users on comments.user_id=users.id order by messages.updated_at");
+            ViewBag.id = HttpContext.Session.GetInt32("id");
+            ViewBag.name = HttpContext.Session.GetString("name");
 
-            return View(new WallViewModel {Comments = comments, Messages = messages});
-
+            return View(new WallViewModel { Comments = comments, Messages = messages });
         }
 
         [HttpGet]
@@ -115,14 +125,13 @@ namespace TheWall.Controllers
         {
             var msgQuery = $"SELECT * FROM  MESSAGES WHERE id='{id}'";
             var result = _dbConnector.Query(msgQuery).FirstOrDefault();
-
-            return View(new Message {message = result["message"].ToString(), id = (int)result["id"]});
+            return View(new Message { message = result["message"].ToString(), id = (int)result["id"] });
         }
 
         [HttpPost]
         public IActionResult Edit(Message msg)
         {
-            var updQuery = $"UPDATE messages SET message='{msg.message}' WHERE id='{msg.id}'";
+            var updQuery = $"UPDATE messages SET message='{msg.message}', updated_at=now() WHERE id='{msg.id}'";
             _dbConnector.Execute(updQuery);
             return RedirectToAction("Show");
         }
@@ -130,7 +139,7 @@ namespace TheWall.Controllers
         [HttpGet]
         public IActionResult CreateComment(int id)
         {
-            return View(new Comment{ message_id = id});
+            return View(new Comment { message_id = id });
         }
 
         [HttpPost]
@@ -142,5 +151,13 @@ namespace TheWall.Controllers
             _dbConnector.Execute(commentQuery);
             return RedirectToAction("Show");
         }
+
+        [HttpGet]
+        public IActionResult DapperFun()
+        {
+            var result = _dbConnector.Connection.Query<User>("Select * from users");
+            return View(result);
+        }
+   
     }
 }

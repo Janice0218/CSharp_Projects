@@ -4,7 +4,7 @@
 <form asp-action="CreateComment" asp-controller="home" method="post">
     <label>Comment:</label>
     <textarea asp-for="comment" name="comment"></textarea>
-    @Model.message_id
-    <input type="hidden" asp-for="message_id" name="message_id" value="@Model.message_id"/>
+    
+    <input type="hidden" asp-for="message_id"  value="@Model.message_id"/>
     <input type="submit" name="name"  value="submit"/>
 </form>

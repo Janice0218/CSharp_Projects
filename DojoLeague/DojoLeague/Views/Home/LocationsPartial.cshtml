@@ -1,0 +1,8 @@
+﻿@model Locations
+
+
+    @foreach(var location in Enum.GetNames(typeof(Locations)))
+    {
+        <option value="@location"></option>
+    }
+

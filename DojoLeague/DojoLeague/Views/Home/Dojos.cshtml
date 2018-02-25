@@ -1,0 +1,50 @@
+﻿@model DojosViewModel
+<div class="directory float-left w-25 ml-5">
+    <div>
+        <h1>Registered Dojos</h1>
+        <table class="table table-striped table-sm table-bordered">
+            <thead class="text-gray-dark">
+            <tr><th>Dojo Name:</th><th>Dojo Location</th></tr>
+            </thead>
+            @foreach (var dojo in Model.dojos)
+            {
+                <tr>
+                    <td>@dojo.name</td>
+                    <td>@dojo.location</td>
+                    
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<div class="form float-right w-25 mr-5">
+    <div>
+        <h1>Register a Dojo</h1>
+        <form asp-action="CreateDojo" method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="dojo.name">Dojo Name:</label>
+                <input asp-for="dojo.name" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="dojo.location">Dojo Location:</label>
+                <select asp-for="dojo.location" class="form-control">
+                    @foreach (var location in Enum.GetNames(typeof(Locations)))
+                    {
+                        <option value="@location">@location</option>
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="dojo.description">Additional Dojo Information:</label>
+                <textarea cols="25" rows="4" asp-for="dojo.description" class="form-control">
+             
+            </textarea>
+            </div>
+            <input type="submit" value="add Dojo"/>
+        </form>
+    </div>
+</div>

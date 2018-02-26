@@ -1,0 +1,5 @@
+﻿@model Dojos
+<h1>Name: @Model.name</h1>
+<h4>Dojo Location - @Model.location</h4>
+<h4>Description: @Model.description</h4>
+<h4>Current Dojo: <a asp-action="ShowDojo" asp-route-location="@Model.location">@Model.name</a></h4>

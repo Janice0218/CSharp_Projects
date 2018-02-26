@@ -13,17 +13,22 @@ namespace LostInTheWoods.Factories
 {
     public class TrailsFactory
     {
-        private IOptions<MySqlOptions> _dbInfo;
 
-        public  TrailsFactory(IOptions<MySqlOptions> dbInfo)
+        private IOptions<MySqlOptions> _accessConnectionString;
+
+        public TrailsFactory(IOptions<MySqlOptions> accessConnectionString)
         {
-            _dbInfo = dbInfo;
+            _accessConnectionString = accessConnectionString;
         }
+
 
         private IDbConnection Connection
         {
-            get { return new MySqlConnection(_dbInfo.Value.ConnectionString); }
+            get { return new MySqlConnection(_accessConnectionString.Value.ConnectionString); }
         }
+
+
+   
 
         public List<Trail> GetTrails()
         {

@@ -26,7 +26,8 @@ namespace LostInTheWoods
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MySqlOptions>(_config.GetSection("DbInfo"));
-            services.AddSingleton<TrailsFactory>();
+            services.AddScoped<TrailsFactory>();
+   
             services.AddMvc();
         }
 
@@ -39,7 +40,7 @@ namespace LostInTheWoods
             }
 
             app.UseStaticFiles();
-            app.UseMvc(routes => routes.MapRoute("defailt", "{controller=Home}/{action=index}/{id?}"));
+            app.UseMvc(routes => routes.MapRoute("default", "{controller=Home}/{action=index}/{id?}"));
         }
     }
 }

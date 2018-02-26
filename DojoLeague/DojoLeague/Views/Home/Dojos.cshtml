@@ -9,7 +9,7 @@
             @foreach (var dojo in Model.dojos)
             {
                 <tr>
-                    <td>@dojo.name</td>
+                    <td><a asp-action="ShowDojo" asp-route-id="@dojo.id" >@dojo.name</a></td>
                     <td>@dojo.location</td>
                     
                 </tr>
@@ -30,10 +30,6 @@
             <div class="form-group">
                 <label asp-for="dojo.location">Dojo Location:</label>
                 <select asp-for="dojo.location" class="form-control">
-                    @foreach (var location in Enum.GetNames(typeof(Locations)))
-                    {
-                        <option value="@location">@location</option>
-                    }
 
                 </select>
             </div>

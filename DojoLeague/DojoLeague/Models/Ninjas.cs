@@ -7,9 +7,10 @@ namespace DojoLeague.Models
 {
     public class Ninjas
     {
+        public int id { get; set; }
         public string name { get; set; }
         public int level { get; set; }
-        public Locations dojo { get; set; } = Locations.Rogue;
+        public string dojo { get; set; } = Rogue;
         public string description { get; set; }
     }
 

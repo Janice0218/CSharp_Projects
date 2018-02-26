@@ -1,8 +1,12 @@
-﻿@model Locations
+﻿@using System.Collections
+@functions {
+    public IEnumerable DojoList { get; set; }
+}
+@model DojoList
 
 
-    @foreach(var location in Enum.GetNames(typeof(Locations)))
+    @foreach(var name in DojoList)
     {
-        <option value="@location"></option>
+        <option value="@name"></option>
     }
 

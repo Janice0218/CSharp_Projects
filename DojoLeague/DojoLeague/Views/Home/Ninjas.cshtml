@@ -1,4 +1,5 @@
-﻿@model NinjasViewModel
+﻿@using System.ComponentModel.DataAnnotations
+@model NinjasViewModel
 <div class="directory float-left w-25 ml-5">
     <div>
         <h1>Registered Ninjas</h1>
@@ -9,8 +10,9 @@
             @foreach (var ninja in Model.ninjas)
             {
                 <tr>
-                    <td>@ninja.name</td>
-                    <td>@ninja.dojo</td>
+                    <td><a asp-action="ShowNinja" asp-route-id="@ninja.id">@ninja.name</a></td>
+                    <td><a asp-action="ShowDojo" asp-route-location="ninja.location">@ninja.dojo </a></td>
+                    
                 </tr>
             }
         </table>
@@ -37,8 +39,7 @@
         <div class="form-group">
             <label asp-for="ninja.dojo">Assigned Dojo:</label>
             <select asp-for="ninja.dojo" class="form-control">
-                @foreach (var location in Enum.GetNames(typeof(Locations)))
-            {
+    
                 <option value="@location">@location</option>
         }
 

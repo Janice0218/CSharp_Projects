@@ -99,7 +99,7 @@ namespace DojoLeague
                 using (var multi = Connection.QueryMultiple(queryString, new { Id = id }))
                 {
                     //takes first row and maps to dojo, and takes the remaining rows and maps to the dojo.Ninjas field
-                    var dojo = multi.Read<Dojo>().Single();
+                    var dojo = multi.Read<Dojo>().SingleOrDefault();
                     dojo.Ninjas = multi.Read<Ninja>().ToList();
                     return dojo;
                 }

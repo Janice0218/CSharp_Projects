@@ -5,7 +5,7 @@
 @model DojoLeagueViewModel
 <div class="directory float-left w-25 ml-5">
     <div>
-        <h1>Registered Ninjas</h1>
+        <h3>Registered Ninjas</h3>
         <table class="table table-striped table-sm table-bordered">
             <thead class="text-gray-dark">
             <tr><th>Ninja Name:</th><th>Home Dojo</th></tr>
@@ -17,7 +17,7 @@
                     <td><a asp-action="ShowNinja" asp-route-id="@ninja.id">@ninja.name</a></td>
                     
                     
-                    <td><a asp-for="#">@Model.Dojos.Where(d=>d.id == ninja.dojo_id).Select(d=>d.name).FirstOrDefault()</a></td>
+                    <td> <a asp-action="ShowDojo">@Model.Dojos.Where(d=>d.id == ninja.dojo_id).Select(d=>d.name).FirstOrDefault()</a> </td>
                     
                 </tr>
             }
@@ -27,7 +27,7 @@
 </div>
 <div class="form float-right w-25 mr-5">
 <div>
-    <h1>Register a Ninja</h1>
+    <h3>Register a Ninja</h3>
     <form asp-action="CreateNinja" method="post">
         <div asp-validation-summary="ModelOnly"></div>
         <div class="form-group">

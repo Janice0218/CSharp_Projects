@@ -56,8 +56,17 @@ namespace DojoLeague.Controllers
         }
         public IActionResult ShowDojo(int id)
         {
-            var result =_data.GetDojoById(id);
-            return View(result);
+            try
+            {
+                var result =_data.GetDojoById(id);
+                return View(result);
+            }
+            catch (NullReferenceException e)
+            {
+                TempData["msg"] = "No one registered for that location!";
+                return RedirectToAction("Ninjas");
+                
+            }
         }
 
         public IActionResult UpdateDojo(int id, int back)

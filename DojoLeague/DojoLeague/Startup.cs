@@ -42,7 +42,7 @@ namespace DojoLeague
 
             app.UseStaticFiles();
             //configures Mvc with defined routing pattern which uses urls with just the action name to return the view
-            app.UseMvc(routes => routes.MapRoute("default", "{action=ninjas}/{id?}", new {controller="home"}));
+            app.UseMvc(routes => routes.MapRoute("default", "{action=ninjas}/{id?}/{back?}", new {controller="home"}));
         }
     }
 }

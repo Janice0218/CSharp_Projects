@@ -1,5 +1,5 @@
-﻿@model Ninjas
-<h1>Name: @Model.name</h1>
-<h4>Ninja Level - @Model.level</h4>
-<h4>Description: @Model.description</h4>
-<h4>Current Dojo: <a asp-action="ShowDojo" asp-route-id="@Model.id">@Model.dojo</a></h4>
+﻿@model List<Ninja>
+<h1>Name: @Model[0].name</h1>
+<h4>Ninja Level - @Model[0].level</h4>
+<h4>Description: @Model[0].description</h4>
+<h4>Current Dojo: <a asp-action="ShowDojo" asp-route-id="@Model[0].id">@Model[0].dojo.name</a></h4>

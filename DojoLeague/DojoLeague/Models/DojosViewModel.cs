@@ -7,7 +7,7 @@ namespace DojoLeague.Models
 {
     public class DojosViewModel
     {
-        public List<Dojos> dojos { get; set; }
-        public Dojos dojo { get; set; }
+        public List<Dojo> dojos { get; set; }
+        public Dojo dojo { get; set; }
     }
 }

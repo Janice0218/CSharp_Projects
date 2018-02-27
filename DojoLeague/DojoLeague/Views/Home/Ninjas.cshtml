@@ -1,5 +1,8 @@
 ﻿@using System.ComponentModel.DataAnnotations
-@model NinjasViewModel
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using System.Linq
+
+@model DojoLeagueViewModel
 <div class="directory float-left w-25 ml-5">
     <div>
         <h1>Registered Ninjas</h1>
@@ -7,15 +10,19 @@
             <thead class="text-gray-dark">
             <tr><th>Ninja Name:</th><th>Home Dojo</th></tr>
             </thead>
-            @foreach (var ninja in Model.ninjas)
+            @foreach (var ninja in Model.Ninjas)
             {
+            <p> </p>
                 <tr>
                     <td><a asp-action="ShowNinja" asp-route-id="@ninja.id">@ninja.name</a></td>
-                    <td><a asp-action="ShowDojo" asp-route-location="ninja.location">@ninja.dojo </a></td>
+                    
+                    
+                    <td><a asp-for="#">@Model.Dojos.Where(d=>d.id == ninja.dojo_id).Select(d=>d.name).FirstOrDefault()</a></td>
                     
                 </tr>
             }
         </table>
+       
     </div>
 </div>
 <div class="form float-right w-25 mr-5">
@@ -24,12 +31,12 @@
     <form asp-action="CreateNinja" method="post">
         <div asp-validation-summary="ModelOnly"></div>
         <div class="form-group">
-            <label asp-for="ninja.name">Ninja Name:</label>
-            <input asp-for="ninja.name" class="form-control" />
+            <label asp-for="Ninja.name">Ninja Name:</label>
+            <input asp-for="Ninja.name" class="form-control" />
         </div>
         <div class="form-group">
-            <label asp-for="ninja.level">Ninja Level (1-10)</label>
-            <select asp-for="ninja.level" class="form-control">
+            <label asp-for="Ninja.level">Ninja Level (1-10)</label>
+            <select asp-for="Ninja.level" class="form-control">
                 @for (int i = 1; i < 11; i++)
             {
                 <option value="@i">@i</option>
@@ -37,18 +44,18 @@
             </select>
         </div>
         <div class="form-group">
-            <label asp-for="ninja.dojo">Assigned Dojo:</label>
-            <select asp-for="ninja.dojo" class="form-control">
-    
-                <option value="@location">@location</option>
+            <label asp-for="Ninja.dojo_id">Assigned Dojo:</label>
+            <select asp-for="Ninja.dojo_id" class="form-control">
+                @foreach(var dojo in Model.Dojos) { 
+                <option value="@dojo.id">@dojo.name</option>
         }
 
             </select>
         </div>
 
         <div class="form-group">
-            <label asp-for="ninja.description">Optional Description:</label>
-            <textarea cols="25" rows="4" asp-for="ninja.description" class="form-control">
+            <label asp-for="Ninja.description">Optional Description:</label>
+            <textarea cols="25" rows="4" asp-for="Ninja.description" class="form-control">
              
             </textarea>
         </div>

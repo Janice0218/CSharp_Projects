@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 
 namespace DojoLeague.Models
 {
-    public class Ninjas
+    public class Ninja
     {
         public int id { get; set; }
         public string name { get; set; }
         public int level { get; set; }
-        public string dojo { get; set; } = Rogue;
+        public Dojo dojo { get; set; } 
         public string description { get; set; }
+        public int dojo_id { get; set; }
     }
 
 }

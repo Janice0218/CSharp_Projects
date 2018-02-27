@@ -8,12 +8,13 @@
             </thead>
             @foreach (var dojo in Model.dojos)
             {
-                <tr>
-                    <td><a asp-action="ShowDojo" asp-route-id="@dojo.id" >@dojo.name</a></td>
-                    <td>@dojo.location</td>
+                if(dojo.id > 1) {
+                    <tr>
+                        <td><a asp-action="ShowDojo" asp-route-id="@dojo.id" >@dojo.name</a></td>
+                        <td>@dojo.location</td>
                     
-                </tr>
-            }
+                    </tr>
+            } }
         </table>
     </div>
 </div>
@@ -29,9 +30,8 @@
 
             <div class="form-group">
                 <label asp-for="dojo.location">Dojo Location:</label>
-                <select asp-for="dojo.location" class="form-control">
+                <input asp-for="dojo.location" class="form-control"/>
 
-                </select>
             </div>
 
             <div class="form-group">

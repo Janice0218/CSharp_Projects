@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DojoLeague.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Routing;
 
 
 namespace DojoLeague.Controllers
@@ -18,7 +18,12 @@ namespace DojoLeague.Controllers
             _data = data;
         }
 
-        public IActionResult Ninjas() => View(new NinjasViewModel(){ninjas = _data.GetNinjas()});
+        public IActionResult Ninjas()
+        {
+            var ninjas = _data.GetNinjas();
+            var dojos = _data.GetDojos();
+            return View(new DojoLeagueViewModel() {Ninjas = ninjas, Dojos = dojos});
+        }
 
         public IActionResult Dojos()
         {
@@ -26,14 +31,14 @@ namespace DojoLeague.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateNinja(Ninjas ninja)
+        public IActionResult CreateNinja(Ninja ninja)
         {
             _data.AddNinja(ninja);
             return RedirectToAction("Ninjas");
         }
 
         [HttpPost]
-        public IActionResult CreateDojo(Dojos dojo)
+        public IActionResult CreateDojo(Dojo dojo)
         {
             _data.AddDojo(dojo);
             return RedirectToAction("Dojos");
@@ -46,13 +51,19 @@ namespace DojoLeague.Controllers
 //        }
         public IActionResult ShowNinja(int id)
         {
-            var result =_data.GetNinjaById(id);
+            var result =_data.GetNinjaById(id).ToList();
             return View(result);
         }
-        public IActionResult ShowDojo(string location)
+        public IActionResult ShowDojo(int id)
         {
-            var result =_data.GetDojoByLocation(location);
+            var result =_data.GetDojoById(id);
             return View(result);
+        }
+
+        public IActionResult UpdateDojo(int id, int back)
+        {
+            _data.UpdateNinjaDojo(id);
+            return RedirectToAction("ShowDojo", back);
         }
     }
 }

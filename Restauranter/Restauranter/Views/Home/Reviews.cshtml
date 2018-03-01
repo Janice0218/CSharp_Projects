@@ -1,0 +1,16 @@
+﻿@model List<Restaurant>
+
+@foreach (var review in Model)
+{
+    <h5>Review for: @review.restaurant_name</h5> 
+    
+    for(int i = 0; i < @review.rating; i++)
+     {
+         <span>&#x2b50</span>
+     }
+    <h6>Reviewer: @review.reviewer_name, @review.visit_date.ToShortDateString()</h6>
+    <p class="ml-2">@review.review</p>
+    <hr/>                                 
+                                                                               
+    
+}

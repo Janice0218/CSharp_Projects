@@ -1,0 +1,40 @@
+﻿@using Restauranter.Models
+@model Restaurant
+<h3>Write a new Review:</h3>
+
+<div class="m-1 p-1  w-50">
+    <form asp-action="Create" method="post">
+        
+        <div class="form-group">
+            <label asp-for="reviewer_name">Reviewer Name:</label>
+            <input class="form-control" asp-for="reviewer_name" />
+        </div>
+   
+        <div class="form-group">
+            <label asp-for="restaurant_name">Restaurant Name:</label>
+            <input class="form-control" asp-for="restaurant_name" />
+        </div>
+        <div class="form-group">
+            <label asp-for="review">Review:</label>
+            <textarea class="form-control" cols="25" rows="5" asp-for="review"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="visit_date" >Date of Visit</label>
+
+            <input class="form-control" asp-for="visit_date" />
+
+        </div>
+        <div class="form-group">
+            <label asp-for="rating">Star Rating</label>
+            <select class="form-control" asp-for="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="text-center"> <input type="submit" class="btn btn-primary" value="submit review" /></div>
+
+    </form>
+</div>

@@ -1,0 +1,30 @@
+﻿@model UserViewModel
+<div class="panel w-25 m-1 p-1">
+    <h3 class="panel-header">Sign up</h3>
+    <form asp-action="Register" method="post">
+        <div class="panel-body ">
+            <div class="form-group">
+                <label asp-for="first_name">First Name:</label>
+                <input asp-for="first_name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="last_name">Last Name:</label>
+                <input asp-for="last_name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="email">Email:</label>
+                <input asp-for="email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="password">Password:</label>
+                <input asp-for="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="password2">Verify Password:</label>
+                <input asp-for="password2" class="form-control" />
+            </div>
+            <input type="submit" value="Register" class="btn btn-primary"/>
+        </div>
+        <a asp-action="Login">Already enrolled in online banking? Login here.</a>
+    </form>
+</div>

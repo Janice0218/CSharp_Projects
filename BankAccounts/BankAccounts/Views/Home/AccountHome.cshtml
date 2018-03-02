@@ -1,7 +1,7 @@
 ﻿
 @model TransactionViewModel
 <h2> Welcome to your account home page:</h2>
-
+<a asp-action="LogOut" class="float-right">Sign Out</a>
 <div class="p-5 card transform w-25">
     <h3 class="card-text">Make a transaction:</h3>
     <form class="card-body" asp-action="Transact" method="post">

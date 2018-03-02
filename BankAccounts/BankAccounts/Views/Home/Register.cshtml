@@ -1,27 +1,34 @@
 ﻿@model UserViewModel
-<div class="panel panel-default">
-    <h3 class="panel-header">Sign up</h3>
+
+<div class="card w-25">
+    <h3 class="card-header">Sign up</h3>
     <form asp-action="Register" method="post">
-        <div class="panel-body ">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="card-body ">
             <div class="form-group">
                 <label asp-for="first_name">First Name:</label>
-                <input asp-for="first_name" class="form-control" />
+                <input asp-for="first_name" class="form-control"/>
+                <span class="text-danger" asp-validation-for="first_name"></span>
             </div>
             <div class="form-group">
                 <label asp-for="last_name">Last Name:</label>
-                <input asp-for="last_name" class="form-control" />
+                <input asp-for="last_name" class="form-control"/>
+                <span class="text-danger" asp-validation-for="last_name"></span>
             </div>
             <div class="form-group">
                 <label asp-for="email">Email:</label>
-                <input asp-for="email" class="form-control" />
+                <input asp-for="email" class="form-control"/>
+                <span class="text-danger" asp-validation-for="email"></span>
             </div>
             <div class="form-group">
                 <label asp-for="password">Password:</label>
-                <input asp-for="password" class="form-control" />
+                <input asp-for="password" class="form-control"/>
+                <span class="text-danger" asp-validation-for="password"></span>
             </div>
             <div class="form-group">
                 <label asp-for="password2">Verify Password:</label>
-                <input asp-for="password2" class="form-control" />
+                <input asp-for="password2" class="form-control"/>
+                <span class="text-danger" asp-validation-for="password2"></span>
             </div>
             <input type="submit" value="Register" class="btn btn-primary"/>
         </div>

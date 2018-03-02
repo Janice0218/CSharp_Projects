@@ -26,46 +26,73 @@ namespace BankAccounts.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string email, string password)
+        public IActionResult Login(Login loginTry)
         {
-            var result= _context.Users.FirstOrDefault(u => u.email == email);
-            if (result == null)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("email", "Email not found");
-            }
-            else
-            {
-                if (result.password == password)
+                var result = _context.Users.FirstOrDefault(u => u.email == loginTry.email);
+                if (result == null)
                 {
-                    HttpContext.Session.SetInt32("id", result.user_id);
+                    ModelState.AddModelError("email", "Email not found");
+                    return View();
+                }
+                else
+                {
+                    var pwhasher = new PasswordHasher<Login>();
+                    if (pwhasher.VerifyHashedPassword(loginTry, result.password, loginTry.password) ==
+                        PasswordVerificationResult.Success)
+                    {
+                        HttpContext.Session.SetInt32("id", result.user_id);
+                        return RedirectToAction("AccountHome");
+                    }ModelState.AddModelError("email", "email or password combination is not valid");
                 }
             }
-            return RedirectToAction("AccountHome");
+            return View();
         }
 
+
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult Register(User newUser)
-        {
-            _context.Users.Add(newUser);
-            _context.SaveChanges();
-            var id = newUser.user_id;
 
-            return RedirectToAction("AccountHome");
-        }
+        [HttpPost]
+        public IActionResult Register(UserViewModel newUser)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_context.Users.Any(u => u.email == newUser.email))
+                {
+                    ModelState.AddModelError("email", "Email address is already registered to a user");
+                    return View();
+                }
+                var pw = newUser.password;
+                var pwhasher = new PasswordHasher<UserViewModel>();
+                var hpw= pwhasher.HashPassword(newUser, pw);
+                var safeUser = new User()
+                {
+                    email = newUser.email,
+                    first_name = newUser.first_name,
+                    last_name = newUser.last_name,
+                    password = hpw
+                };
+                _context.Users.Add(safeUser);
+                _context.SaveChanges();
+                var id = newUser.user_id;
+                HttpContext.Session.SetInt32("id", id);
+                return RedirectToAction("AccountHome");
+            }
+            return View("Register", newUser);
+            }
+
 
         public IActionResult AccountHome()
         {
-            if (HttpContext.Session.GetInt32("id") == null
-            )
+            if (HttpContext.Session.GetInt32("id") == null)
             {
-                
                 return RedirectToAction("Login");
             }
-
             var userId = HttpContext.Session.GetInt32("id");
             var user = _context.Transactions.Where(t => t.Users_user_id == userId).ToList();
             ViewBag.Balance = user.Where(t => t.type == "deposit").Sum(t => t.amount) -
@@ -86,6 +113,13 @@ namespace BankAccounts.Controllers
             _context.Transactions.Add(newTrans);
             _context.SaveChanges();
             return RedirectToAction("AccountHome");
+        }
+
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            TempData["logout"] = "You have been logged out";
+            return RedirectToAction("Login");
         }
 
         

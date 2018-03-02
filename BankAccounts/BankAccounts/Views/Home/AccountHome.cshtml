@@ -1,2 +1,55 @@
-﻿@model List<Transaction>
+﻿
+@model TransactionViewModel
 <h2> Welcome to your account home page:</h2>
+
+<div class="card transform w-25">
+    <h3 class="card-text">Make a transaction</h3>
+    <form class="card-body" asp-action="Transact" method="post">
+        <div class="form-group">
+            <label asp-for="Transaction.type">Transaction Type:</label>
+            <select class="form-control-dark" asp-for="Transaction.type">
+                <option value="null">Select One</option>
+                <option value="deposit">Deposit</option>
+                <option value="withdraw">withdraw</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Transaction.amount">Amount:</label>
+            <input class="form-control-dark" asp-for="Transaction.amount" asp-format="{0:C2}" />
+        </div>
+        <div class="text-center
+             "><input type="submit" value="submit" class="btn btn-primary" /></div>
+
+    </form>
+</div>
+<div class="balance">
+    <h5>Current Balance: </h5>
+    <h4> @ViewBag.Balance.ToString("C")</h4>
+</div>
+
+<div class="transtable">
+    @if (@Model.Transactions.Count == 0)
+    {
+        <p>No Transactions to display</p>
+    }
+    else
+    { <table class="table table-hover table-striped table-bordered table-sm w-50">
+            <thead class="text-center">
+                <tr><th>Date</th><th>Type</th><th>Amount</th></tr>
+            </thead>
+            @foreach (var trans in @Model.Transactions)
+            {
+                <tr class="@trans.type">
+                    <td class="text-center">@trans.timestamp.ToString("d")</td>
+                    <td class="text-center text-capitalize">@trans.type</td>
+                    <td class="text-right">
+                        @if (trans.type == "withdraw")
+                        {<span>-</span>}
+                        @trans.amount.ToString("C")
+                    </td>
+                </tr>
+            }
+        </table>
+
+    }
+</div>

@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link asp-href-include="/lib/bootstrap/dist/css/*.min.css" rel="stylesheet" />
+    <style>
+        .transform{ margin-top: 50px; display:inline-block}
+        .transtable{margin-top: 50px}
+        .balance{ border: 2px solid black; font-size: 25px; display: inline-block; padding: 25px; text-align: center; margin-left: 100px}
+    </style>
 </head>
-<body>
+<body class="m-5 p-1">
     <div>
         @RenderBody()
     </div>

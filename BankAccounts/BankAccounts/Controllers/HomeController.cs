@@ -62,12 +62,32 @@ namespace BankAccounts.Controllers
             if (HttpContext.Session.GetInt32("id") == null
             )
             {
+                
                 return RedirectToAction("Login");
             }
 
             var userId = HttpContext.Session.GetInt32("id");
             var user = _context.Transactions.Where(t => t.Users_user_id == userId).ToList();
-            return View(user);
+            ViewBag.Balance = user.Where(t => t.type == "deposit").Sum(t => t.amount) -
+                      user.Where(t => t.type == "withdraw").Sum(t => t.amount);
+            return View(new TransactionViewModel {Transactions = user});
         }
+
+        [HttpPost]
+        public IActionResult Transact(TransactionViewModel trans)
+        {
+            var newTrans = new Transaction()
+            {
+                type = trans.Transaction.type,
+                amount = trans.Transaction.amount,
+                timestamp = DateTime.Now,
+                Users_user_id = (int) HttpContext.Session.GetInt32("id")
+            };
+            _context.Transactions.Add(newTrans);
+            _context.SaveChanges();
+            return RedirectToAction("AccountHome");
+        }
+
+        
     }
 }

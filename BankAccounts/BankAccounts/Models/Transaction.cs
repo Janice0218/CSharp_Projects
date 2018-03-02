@@ -8,7 +8,8 @@ namespace BankAccounts.Models
 {
     public class Transaction
     {
-        [Key] public int transaction_id { get; set; }
+        [Key]
+        public int transaction_id { get; set; }
         public string type { get; set; }
         public decimal amount { get; set; }
         public DateTime timestamp { get; set; }

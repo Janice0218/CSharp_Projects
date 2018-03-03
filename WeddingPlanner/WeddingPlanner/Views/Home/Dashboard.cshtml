@@ -1,0 +1,8 @@
+﻿@model List<Wedding>
+Listing of all upcoming weddings
+<table>
+    @foreach (var wedding in Model)
+    {
+        <td>@wedding.AFirstName and @wedding.BFirstName</td>
+   }
+</table>

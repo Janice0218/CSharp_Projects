@@ -1,0 +1,27 @@
+﻿@model Wedding
+<div class="container">
+    <form asp-action="CreateWedding" method="post">
+        <div asp-validation-summary="ModelOnly"></div>
+        <label class="form-group row" asp-for="AFirstName">First Name:</label>
+        <input class="form-control" asp-for="AFirstName" />
+        <span asp-validation-for="AFirstName"></span>
+        
+        <label class="form-group row" asp-for="ALastName">Last Name:</label>
+        <input class="form-control" asp-for="ALastName" />
+        <span asp-validation-for="ALastName"></span>
+        
+        <label class="form-group row" asp-for="BFirstName">First Name:</label>
+        <input class="form-control" asp-for="BFirstName" />
+        <span asp-validation-for="BFirstName"></span>
+        
+        <label class="form-group row" asp-for="BLastName">Last Name:</label>
+        <input class="form-control" asp-for="BLastName" />
+        <span asp-validation-for="BLastName"></span>
+
+        <label class="form-group row" asp-for="Date">Date and time:</label>
+        <input class="form-control" asp-for="Date" />
+        <span asp-validation-for="Date"></span>
+        
+        <input type="submit"/>
+    </form>
+</div>

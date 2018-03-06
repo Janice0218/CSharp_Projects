@@ -17,8 +17,12 @@ namespace WeddingPlanner.Models
         public string BLastName { get; set; }
         public int UserId { get; set; }
         public DateTime Date { get; set; }
-        public List<Address> AddressBook { get; set; } = new List<Address>();
-        public List<Guest> GuestList { get; set; } = new List<Guest>();
-        
+        public string AddressName { get; set; }
+        public string Address1 { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public int Zipcode { get; set; }
+
+
     }
 }

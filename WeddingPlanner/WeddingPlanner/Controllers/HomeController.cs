@@ -26,7 +26,7 @@ namespace WeddingPlanner.Controllers
             _context.Users.Add(newUser);
             _context.SaveChanges();
             HttpContext.Session.SetInt32("id", newUser.UserId);
-            return RedirectToAction("MyWedding");
+            return RedirectToAction("Wedding");
         }
 
         
@@ -46,11 +46,10 @@ namespace WeddingPlanner.Controllers
             _context.SaveChanges();
             var wedId = wedding.WeddingId;
             HttpContext.Session.SetInt32("WeddingId", wedId);
-            return RedirectToAction("MyWedding");
-
+            return RedirectToAction("Wedding");
         }
 
-        public IActionResult MyWedding()
+        public IActionResult Wedding()
         {
             var wedId = HttpContext.Session.GetInt32("WeddingId");
             var result = _context.Weddings.FirstOrDefault(d => d.WeddingId == wedId);
@@ -72,7 +71,7 @@ namespace WeddingPlanner.Controllers
         public IActionResult GuestList()
         {
            var guests= _context.Guests.Where(g => g.WeddingId == HttpContext.Session.GetInt32("WeddingId")).ToList();
-            return View(guests)
+            return View(guests);
         }
     }
 }

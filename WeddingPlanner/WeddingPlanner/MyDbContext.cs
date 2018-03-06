@@ -17,7 +17,7 @@ namespace WeddingPlanner
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Wedding> Weddings { get; set; }
-        public DbSet<Address> Addresses { get; set; }
+     
         public DbSet<Guest> Guests { get; set; }
     }
 }

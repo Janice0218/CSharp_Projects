@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WeddingPlanner.Infrastructure;
 using WeddingPlanner.Models;
 
 
@@ -13,8 +14,6 @@ namespace WeddingPlanner.Controllers
     public class HomeController : Controller
     {
         private MyDbContext _context;
- 
-     
 
         public HomeController(MyDbContext context)
         {
@@ -22,19 +21,44 @@ namespace WeddingPlanner.Controllers
            
         }
 
+        public IActionResult LogIn() => View();
+
+        public IActionResult LogIn(LogIn user)
+        {
+            var CurrentUser = _context.Users.FirstOrDefault(u => u.Email == user.Email);
+            HttpContext.Session.SetInt32("UserId", CurrentUser.UserId);
+            var getWedding = _context.Weddings.FirstOrDefault(w => w.UserId == CurrentUser.UserId);
+            if (getWedding == null)
+            {
+                return RedirectToAction("Dashboard");
+            }
+            else
+            {
+                HttpContext.Session.SetInt32("WeddingId", getWedding.WeddingId);
+                return RedirectToAction("Wedding");
+            }
+        }
+
         [HttpGet]
-        public IActionResult Register() => View();
+        public IActionResult Register()
+        {
+            
+            return View();
+        }
 
         public IActionResult Register(User newUser)
         {
+            
             _context.Users.Add(newUser);
             _context.SaveChanges();
-            HttpContext.Session.SetInt32("id", newUser.UserId);
+            HttpContext.Session.SetInt32("UserId", newUser.UserId);
             return RedirectToAction("Wedding");
         }
 
+        [RegisteredOnly]
         public IActionResult NewWedding() => View();
         
+        [RegisteredOnly]
         [HttpPost]
         public IActionResult CreateWedding(Wedding w)
         {
@@ -53,9 +77,10 @@ namespace WeddingPlanner.Controllers
             HttpContext.Session.SetInt32("WeddingId", wedId);
             return RedirectToAction("Wedding");
         }
-
+        
         public IActionResult Wedding(int wedId)
         {
+            @ViewBag.User = HttpContext.Session.GetInt32("UserId");
             if (wedId == 0)
             {
                 wedId = (int)HttpContext.Session.GetInt32("WeddingId");

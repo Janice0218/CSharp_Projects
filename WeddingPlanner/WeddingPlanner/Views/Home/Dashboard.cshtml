@@ -13,7 +13,7 @@
     {
 
         <tr>
-            <td><a asp-action="Wedding" asp-route-wedId="@wedding.WeddingId">@wedding.AFirstName @wedding.ALastName and @wedding.BFirstName @wedding.BLastName</a></td> <td>@wedding.Date</td>
+            <td><a asp-action="Wedding" asp-route-wedId="@wedding.WeddingId">@wedding.AFirstName @wedding.ALastName and @wedding.BFirstName @wedding.BLastName</a></td> <td>@wedding.Date.ToString("f")</td>
         </tr>
     }
     </tbody>

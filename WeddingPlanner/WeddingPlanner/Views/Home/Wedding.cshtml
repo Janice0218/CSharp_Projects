@@ -38,6 +38,9 @@
    
     </tbody>
 </table>
-    <a class="btn btn-primary" asp-action="NewGuest">Add Guest</a>
+@if(Model.UserId == (int?)ViewBag.UserId)
+    {
+        <a class="btn btn-primary" asp-action="NewGuest">Add Guest</a>
+    }
     <a class="btn btn-primary" asp-action="Dashboard">Dashboard</a>
 

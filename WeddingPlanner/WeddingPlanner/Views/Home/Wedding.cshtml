@@ -1,71 +1,43 @@
-﻿@model Wedding
+﻿
+@model Wedding
 
-@if(Model.AFirstName == null){
- 
-    <div class="card w-50">
-        <h3 class="card-title">My Wedding</h3>
-        <h6 class="card-subtitle">Enter details of your wedding to get started.</h6>
-        <div class="card-body">
-            <form asp-action="CreateWedding" method="post">
-                <div asp-validation-summary="ModelOnly"></div>
-                <label class="form-group row" asp-for="AFirstName">First Name:</label>
-                <input class="form-control" asp-for="AFirstName" />
-                <span asp-validation-for="AFirstName"></span>
 
-                <label class="form-group row" asp-for="ALastName">Last Name:</label>
-                <input class="form-control" asp-for="ALastName" />
-                <span asp-validation-for="ALastName"></span>
+<h2>The wedding of...</h2>
+<h2>@Model.AFirstName @Model.ALastName and @Model.BFirstName @Model.BLastName</h2>
+<hr />
+    <h4>@Model.Date.ToString("f")</h4>
+    <h4>At @Model.AddressName</h4>
+    <h5>@Model.Address1</h5>
+    <h5>@Model.City, @Model.State @Model.Zipcode</h5>
 
-                <label class="form-group row" asp-for="BFirstName">First Name:</label>
-                <input class="form-control" asp-for="BFirstName" />
-                <span asp-validation-for="BFirstName"></span>
+<h4>Guest List:</h4>
+<table class="table table-striped table-bordered table-sm w-50">
+    <thead><tr><th>Guest 1</th><th>Guest 2</th><th>Attending?</th></tr></thead>
+    <tbody>
+    @if (Model.Guests.Count == 0)
+    {
+        <td colspan="3">No guests have been added</td>}
 
-                <label class="form-group row" asp-for="BLastName">Last Name:</label>
-                <input class="form-control" asp-for="BLastName" />
-                <span asp-validation-for="BLastName"></span>
+    @foreach (var g in Model.Guests)
+    {
+        <tr>
+            <td>@g.AFirstName @g.ALastName</td>
 
-                <label class="form-group row" asp-for="Date">Date and time:</label>
-                <input class="form-control" asp-for="Date" />
-                <span asp-validation-for="Date"></span>
-                
+            @if (g.BFirstName != null)
+            {
 
-                <div class="form-group">
-                    <label asp-for="AddressName" class="control-label">Location Name:</label>
-                    <input asp-for="AddressName" class="form-control" />
-                    <span asp-validation-for="AddressName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Address1" class="control-label">Address:</label>
-                    <input asp-for="Address1" class="form-control" />
-                    <span asp-validation-for="Address1" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="City" class="control-label">City:</label>
-                    <input asp-for="City" class="form-control" />
-                    <span asp-validation-for="City" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="State" class="control-label">State:</label>
-                    <input asp-for="State" class="form-control" />
-                    <span asp-validation-for="State" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Zipcode" class="control-label">Zipcode:</label>
-                    <input asp-for="Zipcode" class="form-control" />
-                    <span asp-validation-for="Zipcode" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-    
-            </form>
-        </div>
-    </div>
-}
-else
-{
-    <h6>@Model.AFirstName's and @Model.BFirstName's Wedding!</h6>
+                <td>plus Guest</td>
+            }
+            else
+            {<td>@g.BFirstName @g.BLastName</td>} @if (g.IsAttending == true)
+                                                  {
+                                                      <td>yes</td>
+                                                  }else if(g.IsAttending == false){<td>No</td>}else{ <td>No Response</td>}</tr>
+    }
+        
+   
+    </tbody>
+</table>
+    <a class="btn btn-primary" asp-action="NewGuest">Add Guest</a>
+    <a class="btn btn-primary" asp-action="Dashboard">Dashboard</a>
 
-    
-    <a class="btn btn-primary" asp-action="GuestList">Guest List</a>
-}

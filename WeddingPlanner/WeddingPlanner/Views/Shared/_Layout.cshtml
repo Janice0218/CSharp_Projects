@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link asp-href-include="/lib/bootstrap/dist/css/*.min.css" rel="stylesheet" />
+    <style>        fieldset {
+            width: inherit;
+            border: 1px solid !important;
+            margin: 0 0 1.5em 0 !important;
+            
+             padding: 0 1.4em 1.4em 1.4em  !important;
+        }
+    legend{width:inherit; padding:0 5px}</style>
 </head>
-<body>
-    <div>
+<body >
+    <div class="m-1 p-1">
         @RenderBody()
     </div>
 </body>

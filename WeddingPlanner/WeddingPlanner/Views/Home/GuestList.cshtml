@@ -1,3 +1,31 @@
 ﻿@model List<Guest>
 
 <h2>Guest List</h2>
+<table class="table table-striped table-bordered">
+    <thead><tr><th>Guest 1</th><th>Guest 2</th><th>Attending?</th></tr></thead>
+    <tbody>
+        @if (Model.Count == 0)
+    {
+        <td colspan="3">No guests have been added</td>}
+
+        @foreach (var g in Model)
+    {
+        <tr>
+            <td>@g.AFirstName @g.ALastName</td>
+
+            @if (g.BFirstName != null)
+    {
+
+        <td>plus Guest</td>
+}
+else
+            {<td>@g.BFirstName @g.BLastName</td>} @if (g.IsAttending == true)
+                                                  {
+                                                      <td>yes</td>
+                                                  }else if(g.IsAttending == false){<td>No</td>}else{ <td>No Response</td>}</tr>
+    }
+        
+}
+    </tbody>
+</table>
+<a asp-action="NewGuest">Add Guest</a>

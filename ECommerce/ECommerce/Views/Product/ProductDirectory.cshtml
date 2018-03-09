@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Product>
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<Product>
 
 <table class="table table-striped table-bordered">
     <thead>
@@ -23,3 +24,7 @@
     <a asp-action="ProductDirectory" asp-route-pagenum="2">Page 2</a>
     <a asp-action="ProductDirectory" asp-route-pagenum="3">Page 3</a>
 </div>
+@if (ViewContext.HttpContext.Session.Keys.Contains("Cart"))
+{
+    <a asp-action="ViewCart" asp-controller="cart">View Shopping Cart</a>
+}

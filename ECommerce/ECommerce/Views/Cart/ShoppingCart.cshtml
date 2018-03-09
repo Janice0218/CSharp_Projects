@@ -3,20 +3,24 @@
 <h3>Your Shopping Cart</h3>
 <table class="table table-striped table-bordered">
     <thead>
-        <tr>
-            <th>Product</th>
-            <th>Description</th>
-            <th>Price</th>
-        </tr>
+    <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Price</th>
+    </tr>
     </thead>
-    @foreach (var p in Model.lineItem)
+    @if(Model.lineItem.Count == 0) { <td colspan="3">Your Shopping Cart is Empty!</td>}
+        @foreach (var p in Model.lineItem)
     {
         <tr>
             <td>@p.Name</td>
             <td>@p.Description</td>
-            <td>@p.Price.ToString("C") <a class="btn" asp-action="#" asp-controller="Cart">Remove from Cart</a></td>
+            <td>@p.Price.ToString("C") <a class="btn" asp-action="RemoveItem" asp-route-prodid="@p.ProductID" asp-controller="Cart">Remove Item</a></td>
 
         </tr>
-    }
-        <h3>Total: @Model.lineItem.Sum(p => p.Price).ToString("C") </h3>
-</table>
+}
+        
+    
+</table> 
+<h3>Total: @Model.lineItem.Sum(p => p.Price).ToString("C") </h3>
+<a asp-action="ProductDirectory" asp-controller="product">Continue Shopping</a>

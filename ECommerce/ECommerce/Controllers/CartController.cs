@@ -6,6 +6,8 @@ using ECommerce.Infrastructure;
 using ECommerce.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Routing;
 
 namespace ECommerce.Controllers
 {
@@ -26,6 +28,7 @@ namespace ECommerce.Controllers
             Cart cartContents = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
             cartContents.lineItem.Add(requestedProduct);
             HttpContext.Session.SetJson("Cart", cartContents);
+            
 
             return RedirectToAction("ViewCart");
         }
@@ -35,6 +38,18 @@ namespace ECommerce.Controllers
             var cartContents = HttpContext.Session.GetJson<Cart>("Cart");
             
             return View("ShoppingCart", cartContents);
+        }
+
+        public IActionResult RemoveItem(int prodId)
+        {
+
+            Cart cartContents = HttpContext.Session.GetJson<Cart>("Cart");
+            Product unwantedItem = cartContents.lineItem.FirstOrDefault(p => p.ProductID == prodId);
+            cartContents.lineItem.Remove(unwantedItem);
+            HttpContext.Session.SetJson("Cart", cartContents);
+            return RedirectToAction("ViewCart");
+
+
         }
     }
 }

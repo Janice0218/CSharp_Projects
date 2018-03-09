@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerce.Infrastructure;
 using ECommerce.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,7 @@ namespace ECommerce.Controllers
     public class CartController : Controller
     {
         private IProductRepository _repository;
-        private List<Product> ShoppingCart = new List<Product>();
+        
 
         public CartController(IProductRepository repository)
         {
@@ -21,17 +22,19 @@ namespace ECommerce.Controllers
 
         public IActionResult AddToCart(int prodID)
         {
-            HttpContext.Session.SetInt32("productID", prodID);
+            var requestedProduct = _repository.Products.FirstOrDefault(p => p.ProductID == prodID);
+            Cart cartContents = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
+            cartContents.lineItem.Add(requestedProduct);
+            HttpContext.Session.SetJson("Cart", cartContents);
 
             return RedirectToAction("ViewCart");
         }
 
         public IActionResult ViewCart()
         {
-            var prodID = HttpContext.Session.GetInt32("productID");
-            var requestedProduct = _repository.Products.FirstOrDefault(p => p.ProductID == prodID);
-            ShoppingCart.Add(requestedProduct);
-            return View("ShoppingCart", ShoppingCart);
+            var cartContents = HttpContext.Session.GetJson<Cart>("Cart");
+            
+            return View("ShoppingCart", cartContents);
         }
     }
 }
